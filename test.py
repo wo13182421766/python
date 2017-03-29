@@ -1,66 +1,26 @@
-#encoding: UTF-8
-
-
+#coding=utf-8
 from selenium import webdriver
+import time
+import os
 
 browser = webdriver.Chrome()
-browser.get('http://www.baidu.com/')
+file_path =  'file:///' + os.path.abspath('frame.html')
+browser.get(file_path)
 
-from selenium import webdriver
-
-driver = webdriver.Chrome()
-
-driver.get('http://radar.kuaibo.com')
-
-print(driver.title)
-
-driver.quit()
+browser.implicitly_wait(30)
 
 
 
+#time.sleep(7)
+#先找到到ifrome1（id = f1）
+browser.switch_to_frame("f1")
+# #再找到其下面的ifrome2(id =f2)
+browser.switch_to_frame("f2")
 
 
+#下面就可以正常的操作元素了
+browser.find_element_by_id("kw").send_keys("selenium")
+browser.find_element_by_id("su").click()
+time.sleep(10)
 
-# import sys
-#import webbrowser
-# sys.path.append("libs")
-#
-# url = "http://www.baidu.com"
-# webbrowser.open_new(url)
-# webbrowser.get()
-
-#"D:\Program Files (x86)\360_brower_4\360se3\360se.exe"
-# bPath = r'D:\Program Files (x86)\360_brower_4\360se3\360se.exe'
-# webbrowser.register('360', None, webbrowser.BackgroundBrowser(bPath))
-# webbrowser.get('360').open_new_tab('http://www.baidu.com')
-
-
-# import urllib.request
-#
-# url = "http://www.baidu.com"
-# data = urllib.request.urlopen(url)
-# data = data.read()
-# data = data.decode('UTF-8')
-# print(data)
-
-
-
-
-
-#selenium demo
-# from selenium import webdriver
-# from selenium.common.exceptions import NoSuchElementException
-# from selenium.webdriver.common.keys import Keys
-# import time
-#
-# browser = webdriver.Firefox() # Get local session of firefox
-# browser.get("http://www.yahoo.com") # Load page
-# assert "Yahoo!" in browser.title
-# elem = browser.find_element_by_name("p") # Find the query box
-# elem.send_keys("seleniumhq" + Keys.RETURN)
-# time.sleep(0.2) # Let the page load, will be added to the API
-# try:
-#     browser.find_element_by_xpath("//a[contains(@href,'http://seleniumhq.org')]")
-# except NoSuchElementException:
-#     assert 0, "can't find seleniumhq"
-# browser.close()
+browser.quit()

@@ -7,6 +7,7 @@ from datetime import datetime
 from aiohttp import web
 
 def index(request):
+    return 
     return web.Response(body=b'<h1>Awesome</h1>', content_type='text/html')
 
 # @ 只能修饰函数，且必须要在 def 上一行，asyncio.coroutine 作为一个函数 init 就是传入的参数
