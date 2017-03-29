@@ -7,10 +7,8 @@ browser = webdriver.Chrome()
 file_path =  'file:///' + os.path.abspath('frame.html')
 browser.get(file_path)
 
+#隐式等待
 browser.implicitly_wait(30)
-
-
-
 #time.sleep(7)
 #先找到到ifrome1（id = f1）
 browser.switch_to_frame("f1")
